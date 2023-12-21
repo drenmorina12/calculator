@@ -3,6 +3,7 @@ const numbers = document.querySelectorAll(".number");
 const display = document.querySelector(".display");
 const equals = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
+const percent = document.querySelector(".percent");
 
 let number1 = "";
 let number2 = "";
@@ -63,13 +64,13 @@ numbers.forEach((number) => {
     if (operator == "") {
       displayText += numberValue;
       number1 = displayText;
-      // console.log(`Number 1 is ${number1}`);
-      // console.log(operator);
+      console.log(`Number 1 is ${number1}`);
+      console.log(operator);
     } else {
       displayText += numberValue;
       number2 = displayText;
-      // console.log(`Number 2 is ${number2}`);
-      // console.log(operator);
+      console.log(`Number 2 is ${number2}`);
+      console.log(operator);
     }
     displayResult();
   });
@@ -88,8 +89,8 @@ operators.forEach((op) => {
 });
 
 equals.addEventListener("click", () => {
-  n1 = parseInt(number1);
-  n2 = parseInt(number2);
+  n1 = parseFloat(number1);
+  n2 = parseFloat(number2);
   let result = operate(n1, n2, operator);
   displayText = result;
   displayResult();
@@ -99,4 +100,21 @@ equals.addEventListener("click", () => {
 
 clearButton.addEventListener("click", () => {
   clear();
+});
+
+percent.addEventListener("click", () => {
+  if (operator == "") {
+    let n1 = parseFloat(number1) / 100;
+    number1 = "" + n1;
+    displayText = number1;
+    console.log(`Number 1 is ${number1}`);
+    // console.log(operator);
+  } else {
+    let n2 = parseFloat(number2) / 100;
+    number2 = "" + n2;
+    displayText = number2;
+    console.log(`Number 2 is ${number2}`);
+    // console.log(operator);
+  }
+  displayResult();
 });
