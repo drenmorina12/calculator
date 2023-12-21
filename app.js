@@ -2,9 +2,10 @@ const operators = document.querySelectorAll(".operator");
 const numbers = document.querySelectorAll(".number");
 const display = document.querySelector(".display");
 const equals = document.querySelector(".equals");
+const clearButton = document.querySelector(".clear");
 
-let number1 = "",
-  number2 = "";
+let number1 = "";
+let = number2 = "";
 let operator = "";
 let displayText = "";
 
@@ -45,6 +46,15 @@ function operate(number1, number2, operator) {
 
 function displayResult() {
   display.textContent = displayText;
+}
+
+function clear() {
+  displayText = "0";
+  displayResult();
+  displayText = "";
+  number1 = "";
+  number2 = "";
+  operator = "";
 }
 
 numbers.forEach((number) => {
@@ -88,4 +98,8 @@ equals.addEventListener("click", () => {
   console.log(typeof n2);
   displayText = result;
   displayResult();
+});
+
+clearButton.addEventListener("click", () => {
+  clear();
 });
