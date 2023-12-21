@@ -1,6 +1,8 @@
 const operators = document.querySelectorAll(".operator");
+const display = document.querySelector(".display");
 
 let number1, number2, operator;
+let displayText = "";
 
 function add(x, y) {
   return x + y;
@@ -37,8 +39,14 @@ function operate(number1, number2, operator) {
   }
 }
 
+function displayResult() {
+  display.textContent = displayText;
+}
+
 operators.forEach((op) => {
   op.addEventListener("click", () => {
     operator = op.value;
+    displayText = op.value;
+    displayResult();
   });
 });
