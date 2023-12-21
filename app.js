@@ -4,6 +4,7 @@ const display = document.querySelector(".display");
 const equals = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 const percent = document.querySelector(".percent");
+const decimal = document.querySelector(".decimal");
 
 let number1 = "";
 let number2 = "";
@@ -112,6 +113,23 @@ percent.addEventListener("click", () => {
   } else {
     let n2 = parseFloat(number2) / 100;
     number2 = "" + n2;
+    displayText = number2;
+    console.log(`Number 2 is ${number2}`);
+    // console.log(operator);
+  }
+  displayResult();
+});
+
+decimal.addEventListener("click", () => {
+  if (operator == "") {
+    if (!number1.includes(decimal.value)) {
+      number1 += decimal.value;
+      displayText = number1;
+      console.log(`Number 1 is ${number1}`);
+    }
+    // console.log(operator);
+  } else if (!number2.includes(decimal.value)) {
+    number2 += decimal.value;
     displayText = number2;
     console.log(`Number 2 is ${number2}`);
     // console.log(operator);
