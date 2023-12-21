@@ -1,7 +1,11 @@
 const operators = document.querySelectorAll(".operator");
+const numbers = document.querySelectorAll(".number");
 const display = document.querySelector(".display");
+const equals = document.querySelector(".equals");
 
-let number1, number2, operator;
+let number1 = "",
+  number2 = "";
+let operator = "";
 let displayText = "";
 
 function add(x, y) {
@@ -43,10 +47,45 @@ function displayResult() {
   display.textContent = displayText;
 }
 
-operators.forEach((op) => {
-  op.addEventListener("click", () => {
-    operator = op.value;
-    displayText = op.value;
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+    numberValue = number.value;
+    displayResult();
+    if (operator == "") {
+      displayText += numberValue;
+      number1 = displayText;
+      console.log(`Number 1 is ${number1}`);
+      console.log(operator);
+    } else {
+      displayText += numberValue;
+      number2 = displayText;
+      console.log(`Number 2 is ${number2}`);
+      console.log(operator);
+    }
     displayResult();
   });
+});
+
+operators.forEach((op) => {
+  op.addEventListener("click", () => {
+    if (number1 != "") {
+      operator = op.value;
+    }
+    displayText = "";
+    console.log(`This is the diaplay text after operator: ${displayText}`);
+    // displayText = op.value;
+    // displayResult();
+  });
+});
+
+equals.addEventListener("click", () => {
+  n1 = parseInt(number1);
+  n2 = parseInt(number2);
+  let result = operate(n1, n2, operator);
+  console.log(n1);
+  console.log(typeof n1);
+  console.log(n2);
+  console.log(typeof n2);
+  displayText = result;
+  displayResult();
 });
