@@ -12,6 +12,8 @@ let number1 = "";
 let number2 = "";
 let operator = "";
 let displayText = "";
+let additionalOperation = false;
+let equalPressed = false;
 
 function add(x, y) {
   return x + y;
@@ -61,6 +63,7 @@ function clear() {
   number1 = "";
   number2 = "";
   operator = "";
+  additionalOperation = false;
 }
 
 function formatResult(result) {
@@ -69,6 +72,17 @@ function formatResult(result) {
     stringResult = parseFloat(result).toExponential(2);
   }
   return stringResult;
+}
+
+function calculate() {
+  n1 = parseFloat(number1);
+  n2 = parseFloat(number2);
+  let result = operate(n1, n2, operator);
+  let formatedResult = formatResult(result);
+  displayText = formatedResult;
+  displayResult();
+  number1 = formatedResult;
+  number2 = "";
 }
 
 numbers.forEach((number) => {
@@ -88,11 +102,19 @@ numbers.forEach((number) => {
       number2 = displayText;
     }
     displayResult();
+    equalPressed = false;
   });
 });
 
 operators.forEach((op) => {
   op.addEventListener("click", () => {
+    if (operator != "") {
+      additionalOperation = true;
+    }
+
+    if (additionalOperation && !equalPressed) {
+      calculate();
+    }
     if (number1 != "") {
       operator = op.value;
     }
@@ -101,14 +123,8 @@ operators.forEach((op) => {
 });
 
 equals.addEventListener("click", () => {
-  n1 = parseFloat(number1);
-  n2 = parseFloat(number2);
-  let result = operate(n1, n2, operator);
-  let formatedResult = formatResult(result);
-  displayText = formatedResult;
-  displayResult();
-  number1 = formatedResult;
-  number2 = "";
+  calculate();
+  equalPressed = true;
 });
 
 clearButton.addEventListener("click", () => {
