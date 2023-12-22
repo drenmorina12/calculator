@@ -32,7 +32,8 @@ body {
   justify-content: end;
   align-items: center;
   padding-right: 5px;
-  font-size: 60px;
+  font-size: 80px;
+  letter-spacing: 2px;
 }
 
 .buttons {
@@ -46,7 +47,7 @@ button {
   height: 78px;
   border: 1px solid black;
   flex-grow: 1;
-  font-size: 25px;
+  font-size: 30px;
   border-radius: 8%;
 }
 
