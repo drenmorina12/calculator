@@ -41,6 +41,9 @@ function operate(number1, number2, operator) {
       return multiply(number1, number2);
 
     case "/":
+      if (number2 == 0) {
+        return "SUI";
+      }
       return divide(number1, number2);
 
     default:
@@ -71,24 +74,18 @@ function formatResult(result) {
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
     numberValue = number.value;
-    // displayResult();
-
     if (operator == "") {
       if (number1.length == MAX_LENGTH) {
         return;
       }
       displayText += numberValue;
       number1 = displayText;
-      console.log(`Number 1 is ${number1}`);
-      console.log(operator);
     } else {
       if (number2.length == MAX_LENGTH) {
         return;
       }
       displayText += numberValue;
       number2 = displayText;
-      console.log(`Number 2 is ${number2}`);
-      console.log(operator);
     }
     displayResult();
   });
@@ -100,9 +97,6 @@ operators.forEach((op) => {
       operator = op.value;
     }
     displayText = "";
-    console.log(`This is the display text after operator: ${displayText}`);
-    // displayText = op.value;
-    // displayResult();
   });
 });
 
@@ -113,7 +107,6 @@ equals.addEventListener("click", () => {
   let formatedResult = formatResult(result);
   displayText = formatedResult;
   displayResult();
-  console.log(typeof result);
   number1 = formatedResult;
   number2 = "";
 });
@@ -127,14 +120,10 @@ percent.addEventListener("click", () => {
     let n1 = parseFloat(number1) / 100;
     number1 = "" + n1;
     displayText = number1;
-    console.log(`Number 1 is ${number1}`);
-    // console.log(operator);
   } else {
     let n2 = parseFloat(number2) / 100;
     number2 = "" + n2;
     displayText = number2;
-    console.log(`Number 2 is ${number2}`);
-    // console.log(operator);
   }
   displayResult();
 });
@@ -144,14 +133,10 @@ decimal.addEventListener("click", () => {
     if (!number1.includes(decimal.value)) {
       number1 += decimal.value;
       displayText = number1;
-      console.log(`Number 1 is ${number1}`);
     }
-    // console.log(operator);
   } else if (!number2.includes(decimal.value)) {
     number2 += decimal.value;
     displayText = number2;
-    console.log(`Number 2 is ${number2}`);
-    // console.log(operator);
   }
   displayResult();
 });
@@ -161,7 +146,7 @@ sign.addEventListener("click", () => {
     let signedNumber = parseFloat(-number1);
     number1 = signedNumber.toString();
     displayText = number1;
-  }  else {
+  } else {
     let signedNumber = parseFloat(-number2);
     number2 = signedNumber.toString();
     displayText = number2;
