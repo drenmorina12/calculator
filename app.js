@@ -146,7 +146,7 @@ percent.addEventListener("click", () => {
 });
 
 decimal.addEventListener("click", () => {
-  if (operator == "") {
+  if (operator == "" || equalPressed) {
     if (!number1.includes(decimal.value)) {
       number1 += decimal.value;
       displayText = number1;
