@@ -82,7 +82,6 @@ function calculate() {
   displayText = formatedResult;
   displayResult();
   number1 = formatedResult;
-  number2 = "";
 }
 
 numbers.forEach((number) => {
@@ -119,6 +118,7 @@ operators.forEach((op) => {
       operator = op.value;
     }
     displayText = "";
+    number2 = "";
   });
 });
 
