@@ -6,6 +6,7 @@ const clearButton = document.querySelector(".clear");
 const percent = document.querySelector(".percent");
 const decimal = document.querySelector(".decimal");
 
+const MAX_LENGTH = 9;
 let number1 = "";
 let number2 = "";
 let operator = "";
@@ -58,16 +59,31 @@ function clear() {
   operator = "";
 }
 
+function formatResult(result) {
+  stringResult = result.toString();
+  if (stringResult.length > 9) {
+    stringResult = parseFloat(result).toExponential(2);
+  }
+  return stringResult;
+}
+
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
     numberValue = number.value;
     // displayResult();
+
     if (operator == "") {
+      if (number1.length == MAX_LENGTH) {
+        return;
+      }
       displayText += numberValue;
       number1 = displayText;
       console.log(`Number 1 is ${number1}`);
       console.log(operator);
     } else {
+      if (number2.length == MAX_LENGTH) {
+        return;
+      }
       displayText += numberValue;
       number2 = displayText;
       console.log(`Number 2 is ${number2}`);
@@ -93,9 +109,11 @@ equals.addEventListener("click", () => {
   n1 = parseFloat(number1);
   n2 = parseFloat(number2);
   let result = operate(n1, n2, operator);
-  displayText = result;
+  let formatedResult = formatResult(result);
+  displayText = formatedResult;
   displayResult();
-  number1 = result;
+  console.log(typeof result);
+  number1 = formatedResult;
   number2 = "";
 });
 
