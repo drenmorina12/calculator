@@ -5,6 +5,7 @@ const equals = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 const percent = document.querySelector(".percent");
 const decimal = document.querySelector(".decimal");
+const sign = document.querySelector(".sign");
 
 const MAX_LENGTH = 9;
 let number1 = "";
@@ -60,7 +61,7 @@ function clear() {
 }
 
 function formatResult(result) {
-  stringResult = result.toString();
+  let stringResult = result.toString();
   if (stringResult.length > 9) {
     stringResult = parseFloat(result).toExponential(2);
   }
@@ -151,6 +152,19 @@ decimal.addEventListener("click", () => {
     displayText = number2;
     console.log(`Number 2 is ${number2}`);
     // console.log(operator);
+  }
+  displayResult();
+});
+
+sign.addEventListener("click", () => {
+  if (operator == "") {
+    let signedNumber = parseFloat(-number1);
+    number1 = signedNumber.toString();
+    displayText = number1;
+  }  else {
+    let signedNumber = parseFloat(-number2);
+    number2 = signedNumber.toString();
+    displayText = number2;
   }
   displayResult();
 });
