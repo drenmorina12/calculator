@@ -158,7 +158,7 @@ decimal.addEventListener("click", () => {
 });
 
 sign.addEventListener("click", () => {
-  if (operator == "") {
+  if (operator == "" || equalPressed) {
     let signedNumber = parseFloat(-number1);
     number1 = signedNumber.toString();
     displayText = number1;
