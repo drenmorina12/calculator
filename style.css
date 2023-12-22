@@ -70,3 +70,7 @@ button:active {
 .clear {
   background-color: dodgerblue;
 }
+
+.delete {
+  background-color: red;
+}

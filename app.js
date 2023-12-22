@@ -6,6 +6,7 @@ const clearButton = document.querySelector(".clear");
 const percent = document.querySelector(".percent");
 const decimal = document.querySelector(".decimal");
 const sign = document.querySelector(".sign");
+const deleteButton = document.querySelector(".delete");
 
 const MAX_LENGTH = 9;
 let number1 = "";
@@ -165,6 +166,17 @@ sign.addEventListener("click", () => {
   } else {
     let signedNumber = parseFloat(-number2);
     number2 = signedNumber.toString();
+    displayText = number2;
+  }
+  displayResult();
+});
+
+deleteButton.addEventListener("click", () => {
+  if (operator == "" || equalPressed) {
+    number1 = number1.substring(0, number1.length - 1);
+    displayText = number1;
+  } else {
+    number2 = number2.substring(0, number2.length - 1);
     displayText = number2;
   }
   displayResult();
